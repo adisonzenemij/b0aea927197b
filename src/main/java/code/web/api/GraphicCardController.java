@@ -1,20 +1,32 @@
 package code.web.api;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import code.service.GraphicCardService;
-import code.web.dto.*;
+import code.web.dto.ApiResponse;
+import code.web.dto.GraphicCardDto;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.http.*;
-import org.springframework.web.bind.annotation.*;
 
 /** API CRUD de la tabla graphic_card. */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/graphic-cards")
-@Tag(name = "Tarjetas grÃƒÂ¡ficas")
+@Tag(name = "Tarjetas graficas")
 public class GraphicCardController {
     private final GraphicCardService service;
 
