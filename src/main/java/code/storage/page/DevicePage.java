@@ -6,6 +6,6 @@ import org.springframework.data.repository.ListPagingAndSortingRepository;
 
 /** Paginación de la tabla device. */
 public interface DevicePage extends ListPagingAndSortingRepository<Device, Long> {
-  /** Retorna registros paginados. */
-  Page<Device> findBy(Pageable pageable);
+    /** Retorna registros paginados. */
+    Page<Device> findBy(Pageable pageable);
 }

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 /** Convierte entre OperatingSystem y su DTO. */
 @Mapper(componentModel = "spring")
 public interface OperatingSystemMapper {
-  OperatingSystem toEntity(OperatingSystemDto dto);
+    OperatingSystem toEntity(OperatingSystemDto dto);
 
-  OperatingSystemDto toDto(OperatingSystem entity);
+    OperatingSystemDto toDto(OperatingSystem entity);
 }

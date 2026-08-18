@@ -14,19 +14,16 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TypeProcessor implements RegisterEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_register", nullable = false)
-  private Long idRegister;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_register", nullable = false)
+    private Long idRegister;
 
-  @NotBlank
-  @Size(max = 100)
-  @Column(name = "fd_name", nullable = false, length = 100)
-  private String fdName;
+    @NotBlank @Size(max = 100) @Column(name = "fd_name", nullable = false, length = 100)
+    private String fdName;
 
-  @NotNull
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "id_brand_processor", nullable = false)
-  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-  private BrandProcessor brandProcessor;
+    @NotNull @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_brand_processor", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private BrandProcessor brandProcessor;
 }

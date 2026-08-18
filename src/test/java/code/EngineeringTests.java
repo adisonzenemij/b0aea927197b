@@ -16,21 +16,22 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles("test")
 class EngineeringTests {
 
-  @Autowired private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
-  /** Verifica la protección JWT por controlador y por operación CRUD. */
-  @Test
-  void jwtProtectsConfiguredControllersAndWriteOperations() throws Exception {
-    mockMvc.perform(get("/api/roles/dto")).andExpect(status().isUnauthorized());
-    mockMvc.perform(get("/api/users/dto")).andExpect(status().isUnauthorized());
-    mockMvc.perform(get("/api/comments/dto")).andExpect(status().isOk());
-    mockMvc.perform(get("/api/devices/dto")).andExpect(status().isOk());
-    mockMvc.perform(post("/api/comments/dto")).andExpect(status().isUnauthorized());
-    mockMvc.perform(post("/api/devices/dto")).andExpect(status().isUnauthorized());
-  }
+    /** Verifica la protección JWT por controlador y por operación CRUD. */
+    @Test
+    void jwtProtectsConfiguredControllersAndWriteOperations() throws Exception {
+        mockMvc.perform(get("/api/roles/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(get("/api/users/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(get("/api/comments/dto")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/devices/dto")).andExpect(status().isOk());
+        mockMvc.perform(post("/api/comments/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(post("/api/devices/dto")).andExpect(status().isUnauthorized());
+    }
 
 }

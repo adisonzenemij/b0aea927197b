@@ -6,6 +6,6 @@ import org.springframework.data.repository.ListPagingAndSortingRepository;
 
 /** Paginación de la tabla user. */
 public interface UserPage extends ListPagingAndSortingRepository<User, Long> {
-  /** Retorna registros paginados. */
-  Page<User> findBy(Pageable pageable);
+    /** Retorna registros paginados. */
+    Page<User> findBy(Pageable pageable);
 }

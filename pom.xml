@@ -192,6 +192,29 @@
           </annotationProcessorPaths>
         </configuration>
       </plugin>
+      <!-- Spotless: format Java code and organize imports -->
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>2.44.0</version>
+        <configuration>
+          <java>
+            <eclipse>
+              <file>${project.basedir}/.eclipse-formatter.xml</file>
+            </eclipse>
+            <removeUnusedImports />
+            <importOrder />
+            <formatAnnotations />
+          </java>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

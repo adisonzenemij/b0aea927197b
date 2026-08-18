@@ -6,6 +6,6 @@ import org.springframework.data.repository.ListPagingAndSortingRepository;
 
 /** Paginación de la tabla image. */
 public interface ImagePage extends ListPagingAndSortingRepository<Image, Long> {
-  /** Retorna registros paginados. */
-  Page<Image> findBy(Pageable pageable);
+    /** Retorna registros paginados. */
+    Page<Image> findBy(Pageable pageable);
 }

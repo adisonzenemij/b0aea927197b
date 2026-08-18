@@ -6,25 +6,25 @@ import lombok.Data;
 /** Datos transferibles de la tabla user. */
 @Data
 public class UserDto {
-  /** Llave primaria del registro. */
-  private Long idRegister;
+    /** Llave primaria del registro. */
+    private Long idRegister;
 
-  /** Correo electrónico. */
-  private String fdEmail;
+    /** Correo electrónico. */
+    private String fdEmail;
 
-  /** Nombre de inicio de sesión. */
-  private String fdLogin;
+    /** Nombre de inicio de sesión. */
+    private String fdLogin;
 
-  /** Contraseña; solo se recibe, nunca se retorna. */
-  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-  private String fdPassd;
+    /** Contraseña; solo se recibe, nunca se retorna. */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String fdPassd;
 
-  /** Nombres del usuario. */
-  private String fdName;
+    /** Nombres del usuario. */
+    private String fdName;
 
-  /** Apellidos del usuario. */
-  private String fdSrnm;
+    /** Apellidos del usuario. */
+    private String fdSrnm;
 
-  /** Llave foránea de role. */
-  private Long roleId;
+    /** Llave foránea de role. */
+    private Long roleId;
 }

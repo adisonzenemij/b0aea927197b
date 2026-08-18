@@ -17,43 +17,43 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/brand-devices")
 @Tag(name = "Marcas de dispositivos")
 public class BrandDeviceController {
-  private final BrandDeviceService service;
+    private final BrandDeviceService service;
 
-  @GetMapping("/dto")
-  public ApiResponse<List<BrandDeviceDto>> dtoSelectAll() {
-    return ApiResponse.success(service.dtoSelectAll(), "InformaciÃƒÂ³n encontrada");
-  }
+    @GetMapping("/dto")
+    public ApiResponse<List<BrandDeviceDto>> dtoSelectAll() {
+        return ApiResponse.success(service.dtoSelectAll(), "InformaciÃƒÂ³n encontrada");
+    }
 
-  /** Obtiene DTO paginados a travÃ©s de la clase Page de BrandDevice. */
-  @GetMapping("/dto/page")
-  public ApiResponse<Page<BrandDeviceDto>> dtoPageAll(
-      @RequestParam(defaultValue = "0") int sheet, @RequestParam(defaultValue = "50") int row) {
-    return ApiResponse.success(service.dtoPageAll(sheet, row), "InformaciÃ³n encontrada");
-  }
+    /** Obtiene DTO paginados a travÃ©s de la clase Page de BrandDevice. */
+    @GetMapping("/dto/page")
+    public ApiResponse<Page<BrandDeviceDto>> dtoPageAll(
+            @RequestParam(defaultValue = "0") int sheet, @RequestParam(defaultValue = "50") int row) {
+        return ApiResponse.success(service.dtoPageAll(sheet, row), "InformaciÃ³n encontrada");
+    }
 
-  @GetMapping("/dto/{idRegister}")
-  public ApiResponse<BrandDeviceDto> dtoSelectReg(@PathVariable Long idRegister) {
-    return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
-  }
+    @GetMapping("/dto/{idRegister}")
+    public ApiResponse<BrandDeviceDto> dtoSelectReg(@PathVariable Long idRegister) {
+        return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
+    }
 
-  @SecurityRequirement(name = "bearerAuth")
-  @PostMapping("/dto")
-  public ResponseEntity<ApiResponse<BrandDeviceDto>> dtoInsertReg(@RequestBody BrandDeviceDto dto) {
-    return ResponseEntity.status(HttpStatus.CREATED)
-        .body(ApiResponse.success(service.dtoSaveData(dto), "Registro creado"));
-  }
+    @SecurityRequirement(name = "bearerAuth")
+    @PostMapping("/dto")
+    public ResponseEntity<ApiResponse<BrandDeviceDto>> dtoInsertReg(@RequestBody BrandDeviceDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.success(service.dtoSaveData(dto), "Registro creado"));
+    }
 
-  @SecurityRequirement(name = "bearerAuth")
-  @PutMapping("/dto/{idRegister}")
-  public ApiResponse<BrandDeviceDto> dtoUpdateReg(
-      @PathVariable Long idRegister, @RequestBody BrandDeviceDto dto) {
-    return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");
-  }
+    @SecurityRequirement(name = "bearerAuth")
+    @PutMapping("/dto/{idRegister}")
+    public ApiResponse<BrandDeviceDto> dtoUpdateReg(
+            @PathVariable Long idRegister, @RequestBody BrandDeviceDto dto) {
+        return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");
+    }
 
-  @SecurityRequirement(name = "bearerAuth")
-  @DeleteMapping("/dto/{idRegister}")
-  public ResponseEntity<Void> dtoDeleteReg(@PathVariable Long idRegister) {
-    service.dtoDeleteReg(idRegister);
-    return ResponseEntity.noContent().build();
-  }
+    @SecurityRequirement(name = "bearerAuth")
+    @DeleteMapping("/dto/{idRegister}")
+    public ResponseEntity<Void> dtoDeleteReg(@PathVariable Long idRegister) {
+        service.dtoDeleteReg(idRegister);
+        return ResponseEntity.noContent().build();
+    }
 }

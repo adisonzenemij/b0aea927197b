@@ -6,6 +6,6 @@ import org.springframework.data.repository.ListPagingAndSortingRepository;
 
 /** Paginación de la tabla type_processor. */
 public interface TypeProcessorPage extends ListPagingAndSortingRepository<TypeProcessor, Long> {
-  /** Retorna registros paginados. */
-  Page<TypeProcessor> findBy(Pageable pageable);
+    /** Retorna registros paginados. */
+    Page<TypeProcessor> findBy(Pageable pageable);
 }

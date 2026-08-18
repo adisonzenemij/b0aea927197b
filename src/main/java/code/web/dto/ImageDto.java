@@ -5,12 +5,12 @@ import lombok.Data;
 /** Datos transferibles de la tabla image. */
 @Data
 public class ImageDto {
-  /** Llave primaria del registro. */
-  private Long idRegister;
+    /** Llave primaria del registro. */
+    private Long idRegister;
 
-  /** Imagen o dato codificado en texto. */
-  private String fdData;
+    /** Imagen o dato codificado en texto. */
+    private String fdData;
 
-  /** Llave foránea de device. */
-  private Long deviceId;
+    /** Llave foránea de device. */
+    private Long deviceId;
 }

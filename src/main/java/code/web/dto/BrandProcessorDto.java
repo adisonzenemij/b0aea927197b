@@ -5,9 +5,9 @@ import lombok.Data;
 /** Datos transferibles de la tabla brand_processor. */
 @Data
 public class BrandProcessorDto {
-  /** Llave primaria del registro. */
-  private Long idRegister;
+    /** Llave primaria del registro. */
+    private Long idRegister;
 
-  /** Nombre de la marca del procesador. */
-  private String fdName;
+    /** Nombre de la marca del procesador. */
+    private String fdName;
 }

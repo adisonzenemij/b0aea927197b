@@ -12,13 +12,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BrandDevice implements RegisterEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_register", nullable = false)
-  private Long idRegister;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_register", nullable = false)
+    private Long idRegister;
 
-  @NotBlank
-  @Size(max = 100)
-  @Column(name = "name", nullable = false, length = 100)
-  private String name;
+    @NotBlank @Size(max = 100) @Column(name = "name", nullable = false, length = 100)
+    private String name;
 }

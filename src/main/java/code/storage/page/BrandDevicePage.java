@@ -7,6 +7,6 @@ import org.springframework.data.repository.ListPagingAndSortingRepository;
 
 /** Paginación de la tabla brand_device. */
 public interface BrandDevicePage extends ListPagingAndSortingRepository<BrandDevice, Long> {
-  /** Retorna registros paginados y ordenados por Pageable. */
-  Page<BrandDevice> findBy(Pageable pageable);
+    /** Retorna registros paginados y ordenados por Pageable. */
+    Page<BrandDevice> findBy(Pageable pageable);
 }

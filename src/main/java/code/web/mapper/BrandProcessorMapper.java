@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 /** Convierte entre BrandProcessor y su DTO. */
 @Mapper(componentModel = "spring")
 public interface BrandProcessorMapper {
-  BrandProcessor toEntity(BrandProcessorDto dto);
+    BrandProcessor toEntity(BrandProcessorDto dto);
 
-  BrandProcessorDto toDto(BrandProcessor entity);
+    BrandProcessorDto toDto(BrandProcessor entity);
 }

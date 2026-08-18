@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 /** Convierte entre GraphicCard y su DTO. */
 @Mapper(componentModel = "spring")
 public interface GraphicCardMapper {
-  GraphicCard toEntity(GraphicCardDto dto);
+    GraphicCard toEntity(GraphicCardDto dto);
 
-  GraphicCardDto toDto(GraphicCard entity);
+    GraphicCardDto toDto(GraphicCard entity);
 }

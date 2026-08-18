@@ -12,13 +12,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GraphicCard implements RegisterEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_register", nullable = false)
-  private Long idRegister;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_register", nullable = false)
+    private Long idRegister;
 
-  @NotBlank
-  @Size(max = 100)
-  @Column(name = "fd_name", nullable = false, length = 100)
-  private String fdName;
+    @NotBlank @Size(max = 100) @Column(name = "fd_name", nullable = false, length = 100)
+    private String fdName;
 }

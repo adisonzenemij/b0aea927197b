@@ -16,17 +16,17 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-  private final UserRepository userRepository;
-  private final PasswordEncoder passwordEncoder;
-  private final JwtUtility jwtUtility;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtility jwtUtility;
 
-  /** Inicia sesión con login y contraseña y devuelve un token Bearer vigente. */
-  @Transactional(readOnly = true)
-  public JwtTokenDto login(LoginDto loginDto) {
-    User user = userRepository.findFirstByFdLogin(loginDto.getFdLogin()).orElse(null);
-    if (user == null || !passwordEncoder.matches(loginDto.getFdPassd(), user.getFdPassd())) {
-      throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales inválidas");
+    /** Inicia sesión con login y contraseña y devuelve un token Bearer vigente. */
+    @Transactional(readOnly = true)
+    public JwtTokenDto login(LoginDto loginDto) {
+        User user = userRepository.findFirstByFdLogin(loginDto.getFdLogin()).orElse(null);
+        if (user == null || !passwordEncoder.matches(loginDto.getFdPassd(), user.getFdPassd())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales inválidas");
+        }
+        return jwtUtility.generateToken(user);
     }
-    return jwtUtility.generateToken(user);
-  }
 }
