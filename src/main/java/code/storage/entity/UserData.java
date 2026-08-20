@@ -35,7 +35,7 @@ public class UserData implements RegisterEntity {
     private String fdSrnm;
 
     @NotNull @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_role", nullable = false)
+    @JoinColumn(name = "id_role_data", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private RoleData role;
+    private RoleData roleData;
 }

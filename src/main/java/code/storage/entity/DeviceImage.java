@@ -26,4 +26,10 @@ public class DeviceImage implements RegisterEntity {
     @JoinColumn(name = "id_device", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private DeviceData device;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_image_ext", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private ImageExt imageExt;
 }

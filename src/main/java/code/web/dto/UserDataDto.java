@@ -26,5 +26,5 @@ public class UserDataDto {
     private String fdSrnm;
 
     /** Llave foránea de role_data. */
-    private Long roleId;
+    private Long roleDataId;
 }

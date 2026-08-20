@@ -11,10 +11,10 @@ import org.mapstruct.Mapping;
  */
 @Mapper(componentModel = "spring")
 public interface UserDataMapper {
-    @Mapping(source = "roleId", target = "role")
+    @Mapping(source = "roleDataId", target = "roleData")
     UserData toEntity(UserDataDto dto);
 
-    @Mapping(source = "role.idRegister", target = "roleId")
+    @Mapping(source = "roleData.idRegister", target = "roleDataId")
     UserDataDto toDto(UserData entity);
 
     /** Construye una referencia de RoleData usando la llave foránea suministrada. */

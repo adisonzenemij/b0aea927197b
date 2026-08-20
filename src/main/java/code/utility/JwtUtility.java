@@ -36,7 +36,7 @@ public class JwtUtility {
     public JwtTokenDto generateToken(UserData user) {
         Instant now = Instant.now();
         Instant expiresAt = now.plusSeconds(expirationSeconds);
-        String role = user.getRole() == null ? "" : user.getRole().getFdName();
+        String role = user.getRoleData() == null ? "" : user.getRoleData().getFdName();
         String token = JWT.create()
                 .withIssuer(issuer)
                 .withSubject(user.getFdLogin())

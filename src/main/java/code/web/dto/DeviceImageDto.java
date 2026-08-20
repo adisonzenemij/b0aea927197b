@@ -13,4 +13,7 @@ public class DeviceImageDto {
 
     /** Llave foránea de device_data. */
     private Long deviceId;
+
+    /** Llave foránea de image_ext. */
+    private Long imageExtId;
 }

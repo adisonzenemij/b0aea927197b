@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserDataRepository extends JpaRepository<UserData, Long> {
     /** Busca un usuario por su nombre de inicio de sesión. */
-    @EntityGraph(attributePaths = "role")
+    @EntityGraph(attributePaths = "roleData")
     Optional<UserData> findFirstByFdLogin(String fdLogin);
 }

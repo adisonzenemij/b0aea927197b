@@ -50,7 +50,7 @@ public class JwtFilter extends OncePerRequestFilter {
      * datos.
      */
     private void authenticate(UserData user) {
-        String role = user.getRole() == null ? "" : user.getRole().getFdName();
+        String role = user.getRoleData() == null ? "" : user.getRoleData().getFdName();
         UserDetails principal = org.springframework.security.core.userdetails.User.withUsername(user.getFdLogin())
                 .password("")
                 .authorities(List.of(new SimpleGrantedAuthority("ROLE_" + role)))
