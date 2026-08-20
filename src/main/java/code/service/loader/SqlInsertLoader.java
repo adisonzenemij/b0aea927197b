@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SqlInsertLoader {
     private static final String MYSQL_URL_PREFIX = "jdbc:mysql:";
+    private static final String OPERATION = "database/mysql/insert";
 
     private final JdbcTemplate jdbcTemplate;
     private final Environment environment;
@@ -26,8 +27,18 @@ public class SqlInsertLoader {
             return;
         }
 
+        loadDefaultData();
+    }
+
+    private void loadDefaultData() {
+        ClassPathResource[] resources = {
+                new ClassPathResource(OPERATION + "/role_data.sql"),
+                new ClassPathResource(OPERATION + "/user_data.sql"),
+                new ClassPathResource(OPERATION + "/image_ext.sql")
+        };
+
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new ClassPathResource("database/mysql/insert/SQLInsert.sql"));
+        populator.addScripts(resources);
         populator.execute(jdbcTemplate.getDataSource());
     }
 }

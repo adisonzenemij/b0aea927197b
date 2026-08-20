@@ -1,8 +1,3 @@
-INSERT IGNORE INTO role_data (id_register, fd_name)
-VALUES
-    (1, 'Administrador'),
-    (2, 'Comprador');
-
 INSERT IGNORE INTO user_data (
     id_register,
     fd_email,
@@ -18,14 +13,3 @@ VALUES
     (3, 'wendy@gmail.com', 'wendy', '$2y$12$obAufDW7vBd5wPdo4./6SuVmU6GSD9Hn.Z7VUQ4LGJgQri5evAJZe', 'Wendy Yulany', 'Ayala Hernandez', 1),
     (4, 'diana@gmail.com', 'diana', '$2y$12$9ZIAz2AGac7dv3HNzqhtdeJqmNh5XbgGpRS0.MgP2c1Ofi2bd.Ki.', 'Diana Iveth', 'Gomez Gomez', 2),
     (5, 'kyara@gmail.com', 'kyara', '$2y$12$WJnr8UgCBSCjLW5Ymm42iuUQ6/i8KWpTjoTrAs1j8kZ9vLvvK9IdC', 'Kyara Andrea', 'Sierra Reyes', 1);
-
-INSERT IGNORE INTO image_ext (id_register, fd_value)
-VALUES
-    (1, 'png'),
-    (2, 'jpg'),
-    (3, 'jpeg'),
-    (4, 'webp'),
-    (5, 'svg'),
-    (6, 'gif'),
-    (7, 'ico'),
-    (8, 'avif');

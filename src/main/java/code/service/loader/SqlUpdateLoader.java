@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SqlUpdateLoader {
     private static final String MYSQL_URL_PREFIX = "jdbc:mysql:";
+    private static final String OPERATION = "database/mysql/update";
 
     private final JdbcTemplate jdbcTemplate;
     private final Environment environment;
@@ -28,8 +29,18 @@ public class SqlUpdateLoader {
             return;
         }
 
+        updateDefaultData();
+    }
+
+    private void updateDefaultData() {
+        ClassPathResource[] resources = {
+                new ClassPathResource(OPERATION + "/role_data.sql"),
+                new ClassPathResource(OPERATION + "/user_data.sql"),
+                new ClassPathResource(OPERATION + "/image_ext.sql")
+        };
+
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new ClassPathResource("database/mysql/update/SQLUpdate.sql"));
+        populator.addScripts(resources);
         populator.execute(jdbcTemplate.getDataSource());
     }
 }
