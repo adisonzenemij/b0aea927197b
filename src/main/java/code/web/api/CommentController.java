@@ -21,19 +21,19 @@ public class CommentController {
 
     @GetMapping("/dto")
     public ApiResponse<List<CommentDto>> dtoSelectAll() {
-        return ApiResponse.success(service.dtoSelectAll(), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectAll(), "Informacion encontrada");
     }
 
     /** Obtiene DTO paginados a travÃ©s de la clase Page de Comment. */
     @GetMapping("/dto/page")
     public ApiResponse<Page<CommentDto>> dtoPageAll(
             @RequestParam(defaultValue = "0") int sheet, @RequestParam(defaultValue = "50") int row) {
-        return ApiResponse.success(service.dtoPageAll(sheet, row), "InformaciÃ³n encontrada");
+        return ApiResponse.success(service.dtoPageAll(sheet, row), "Informacion encontrada");
     }
 
     @GetMapping("/dto/{idRegister}")
     public ApiResponse<CommentDto> dtoSelectReg(@PathVariable Long idRegister) {
-        return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectReg(idRegister), "Informacion encontrada");
     }
 
     @SecurityRequirement(name = "bearerAuth")

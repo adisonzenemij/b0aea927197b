@@ -14,25 +14,25 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/brand-processors", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Marcas de procesadores")
+@Tag(name = "Marcas Procesadores")
 public class BrandProcessorController {
     private final BrandProcessorService service;
 
     @GetMapping("/dto")
     public ApiResponse<List<BrandProcessorDto>> dtoSelectAll() {
-        return ApiResponse.success(service.dtoSelectAll(), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectAll(), "Informacion encontrada");
     }
 
     /** Obtiene DTO paginados a travÃ©s de la clase Page de BrandProcessor. */
     @GetMapping("/dto/page")
     public ApiResponse<Page<BrandProcessorDto>> dtoPageAll(
             @RequestParam(defaultValue = "0") int sheet, @RequestParam(defaultValue = "50") int row) {
-        return ApiResponse.success(service.dtoPageAll(sheet, row), "InformaciÃ³n encontrada");
+        return ApiResponse.success(service.dtoPageAll(sheet, row), "Informacion encontrada");
     }
 
     @GetMapping("/dto/{idRegister}")
     public ApiResponse<BrandProcessorDto> dtoSelectReg(@PathVariable Long idRegister) {
-        return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectReg(idRegister), "Informacion encontrada");
     }
 
     @SecurityRequirement(name = "bearerAuth")

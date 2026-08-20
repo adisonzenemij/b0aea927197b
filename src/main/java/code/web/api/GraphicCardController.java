@@ -27,25 +27,25 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/graphic-cards", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Tarjetas graficas")
+@Tag(name = "Tarjetas Graficas")
 public class GraphicCardController {
     private final GraphicCardService service;
 
     @GetMapping("/dto")
     public ApiResponse<List<GraphicCardDto>> dtoSelectAll() {
-        return ApiResponse.success(service.dtoSelectAll(), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectAll(), "Informacion encontrada");
     }
 
     /** Obtiene DTO paginados a travÃ©s de la clase Page de GraphicCard. */
     @GetMapping("/dto/page")
     public ApiResponse<Page<GraphicCardDto>> dtoPageAll(
             @RequestParam(defaultValue = "0") int sheet, @RequestParam(defaultValue = "50") int row) {
-        return ApiResponse.success(service.dtoPageAll(sheet, row), "InformaciÃ³n encontrada");
+        return ApiResponse.success(service.dtoPageAll(sheet, row), "Informacion encontrada");
     }
 
     @GetMapping("/dto/{idRegister}")
     public ApiResponse<GraphicCardDto> dtoSelectReg(@PathVariable Long idRegister) {
-        return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectReg(idRegister), "Informacion encontrada");
     }
 
     @SecurityRequirement(name = "bearerAuth")

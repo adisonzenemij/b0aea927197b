@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/image-exts", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Extensiones de imagen")
+@Tag(name = "Imagenes Extensiones")
 public class ImageExtController {
     private final ImageExtService service;
 

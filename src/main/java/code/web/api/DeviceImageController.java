@@ -27,25 +27,25 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/images", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Imagenes")
+@Tag(name = "Dispositivos Imagenes")
 public class DeviceImageController {
     private final DeviceImageService service;
 
     @GetMapping("/dto")
     public ApiResponse<List<DeviceImageDto>> dtoSelectAll() {
-        return ApiResponse.success(service.dtoSelectAll(), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectAll(), "Informacion encontrada");
     }
 
     /** Obtiene DTO paginados a travÃ©s de la clase Page de DeviceImage. */
     @GetMapping("/dto/page")
     public ApiResponse<Page<DeviceImageDto>> dtoPageAll(
             @RequestParam(defaultValue = "0") int sheet, @RequestParam(defaultValue = "50") int row) {
-        return ApiResponse.success(service.dtoPageAll(sheet, row), "InformaciÃ³n encontrada");
+        return ApiResponse.success(service.dtoPageAll(sheet, row), "Informacion encontrada");
     }
 
     @GetMapping("/dto/{idRegister}")
     public ApiResponse<DeviceImageDto> dtoSelectReg(@PathVariable Long idRegister) {
-        return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectReg(idRegister), "Informacion encontrada");
     }
 
     @SecurityRequirement(name = "bearerAuth")

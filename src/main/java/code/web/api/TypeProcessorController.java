@@ -14,25 +14,25 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/type-processors", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Tipos de procesadores")
+@Tag(name = "Tipos Procesadores")
 public class TypeProcessorController {
     private final TypeProcessorService service;
 
     @GetMapping("/dto")
     public ApiResponse<List<TypeProcessorDto>> dtoSelectAll() {
-        return ApiResponse.success(service.dtoSelectAll(), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectAll(), "Informacion encontrada");
     }
 
     /** Obtiene DTO paginados a travÃ©s de la clase Page de TypeProcessor. */
     @GetMapping("/dto/page")
     public ApiResponse<Page<TypeProcessorDto>> dtoPageAll(
             @RequestParam(defaultValue = "0") int sheet, @RequestParam(defaultValue = "50") int row) {
-        return ApiResponse.success(service.dtoPageAll(sheet, row), "InformaciÃ³n encontrada");
+        return ApiResponse.success(service.dtoPageAll(sheet, row), "Informacion encontrada");
     }
 
     @GetMapping("/dto/{idRegister}")
     public ApiResponse<TypeProcessorDto> dtoSelectReg(@PathVariable Long idRegister) {
-        return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
+        return ApiResponse.success(service.dtoSelectReg(idRegister), "Informacion encontrada");
     }
 
     @SecurityRequirement(name = "bearerAuth")
