@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla type_processor. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/type-processors")
+@RequestMapping(value = "/api/type-processors", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Tipos de procesadores")
 public class TypeProcessorController {
     private final TypeProcessorService service;
@@ -36,7 +36,7 @@ public class TypeProcessorController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<TypeProcessorDto>> dtoInsertReg(
             @RequestBody TypeProcessorDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -44,7 +44,7 @@ public class TypeProcessorController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<TypeProcessorDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody TypeProcessorDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");

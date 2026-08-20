@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla user_data. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users")
+@RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Usuarios")
 @SecurityRequirement(name = "bearerAuth")
 public class UserDataController {
@@ -36,13 +36,13 @@ public class UserDataController {
         return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
     }
 
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<UserDataDto>> dtoInsertReg(@RequestBody UserDataDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(service.dtoSaveData(dto), "Registro creado"));
     }
 
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<UserDataDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody UserDataDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 /** API CRUD de la tabla graphic_card. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/graphic-cards")
+@RequestMapping(value = "/api/graphic-cards", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Tarjetas graficas")
 public class GraphicCardController {
     private final GraphicCardService service;
@@ -48,14 +49,14 @@ public class GraphicCardController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<GraphicCardDto>> dtoInsertReg(@RequestBody GraphicCardDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(service.dtoSaveData(dto), "Registro creado"));
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<GraphicCardDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody GraphicCardDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");

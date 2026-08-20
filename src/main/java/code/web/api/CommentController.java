@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla comment. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/comments")
+@RequestMapping(value = "/api/comments", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Comentarios")
 public class CommentController {
     private final CommentService service;
@@ -37,7 +37,7 @@ public class CommentController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<CommentDto>> dtoInsertReg(
             @RequestBody CommentDto dto, Authentication authentication) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -47,7 +47,7 @@ public class CommentController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<CommentDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody CommentDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");

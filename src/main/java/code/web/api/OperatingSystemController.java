@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla operating_system. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/operating-systems")
+@RequestMapping(value = "/api/operating-systems", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Sistemas operativos")
 public class OperatingSystemController {
     private final OperatingSystemService service;
@@ -36,7 +36,7 @@ public class OperatingSystemController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<OperatingSystemDto>> dtoInsertReg(
             @RequestBody OperatingSystemDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -44,7 +44,7 @@ public class OperatingSystemController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<OperatingSystemDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody OperatingSystemDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");

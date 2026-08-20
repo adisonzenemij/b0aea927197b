@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla brand_processor. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/brand-processors")
+@RequestMapping(value = "/api/brand-processors", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Marcas de procesadores")
 public class BrandProcessorController {
     private final BrandProcessorService service;
@@ -36,7 +36,7 @@ public class BrandProcessorController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<BrandProcessorDto>> dtoInsertReg(
             @RequestBody BrandProcessorDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -44,7 +44,7 @@ public class BrandProcessorController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<BrandProcessorDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody BrandProcessorDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");

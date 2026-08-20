@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 /** API CRUD de la tabla device_image. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/images")
+@RequestMapping(value = "/api/images", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Imagenes")
 public class DeviceImageController {
     private final DeviceImageService service;
@@ -48,14 +49,14 @@ public class DeviceImageController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<DeviceImageDto>> dtoInsertReg(@RequestBody DeviceImageDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(service.dtoSaveData(dto), "Registro creado"));
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<DeviceImageDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody DeviceImageDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");

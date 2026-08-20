@@ -7,6 +7,7 @@ import code.web.dto.LoginDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/auth")
+@RequestMapping(value = "/api/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Autenticación")
 public class AuthController {
     private final AuthService service;
@@ -27,7 +28,7 @@ public class AuthController {
      * Valida credenciales y retorna el Bearer token que protege roles, usuarios y
      * comentarios.
      */
-    @PostMapping("/login")
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<JwtTokenDto> login(@Valid @RequestBody LoginDto loginDto) {
         return ApiResponse.success(service.login(loginDto), "Autenticación exitosa");
     }

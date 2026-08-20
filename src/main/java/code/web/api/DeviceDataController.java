@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla device_data. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/devices")
+@RequestMapping(value = "/api/devices", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Dispositivos")
 public class DeviceDataController {
     private final DeviceDataService service;
@@ -36,14 +36,14 @@ public class DeviceDataController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<DeviceDataDto>> dtoInsertReg(@RequestBody DeviceDataDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(service.dtoSaveData(dto), "Registro creado"));
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<DeviceDataDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody DeviceDataDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");

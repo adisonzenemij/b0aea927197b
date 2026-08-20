@@ -9,6 +9,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 /** API CRUD de la tabla image_ext. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/image-exts")
+@RequestMapping(value = "/api/image-exts", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Extensiones de imagen")
 public class ImageExtController {
     private final ImageExtService service;
@@ -46,14 +47,14 @@ public class ImageExtController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PostMapping("/dto")
+    @PostMapping(value = "/dto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponse<ImageExtDto>> dtoInsertReg(@RequestBody ImageExtDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(service.dtoSaveData(dto), "Registro creado"));
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/dto/{idRegister}")
+    @PutMapping(value = "/dto/{idRegister}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<ImageExtDto> dtoUpdateReg(
             @PathVariable Long idRegister,
             @RequestBody ImageExtDto dto) {
