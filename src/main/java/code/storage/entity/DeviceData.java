@@ -8,12 +8,12 @@ import java.time.LocalDate;
 import lombok.*;
 
 @Entity
-@Table(name = "device")
+@Table(name = "device_data")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Device implements RegisterEntity {
+public class DeviceData implements RegisterEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_register", nullable = false)

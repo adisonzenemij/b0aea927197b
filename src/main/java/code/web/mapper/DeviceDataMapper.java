@@ -1,27 +1,27 @@
 package code.web.mapper;
 
 import code.storage.entity.*;
-import code.web.dto.DeviceDto;
+import code.web.dto.DeviceDataDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 /**
- * Convierte entre Device y su DTO, exponiendo cada relación por su llave
+ * Convierte entre DeviceData y su DTO, exponiendo cada relación por su llave
  * foránea.
  */
 @Mapper(componentModel = "spring")
-public interface DeviceMapper {
+public interface DeviceDataMapper {
     @Mapping(source = "graphicCardId", target = "graphicCard")
     @Mapping(source = "brandDeviceId", target = "brandDevice")
     @Mapping(source = "typeProcessorId", target = "typeProcessor")
     @Mapping(source = "operatingSystemId", target = "operatingSystem")
-    Device toEntity(DeviceDto dto);
+    DeviceData toEntity(DeviceDataDto dto);
 
     @Mapping(source = "graphicCard.idRegister", target = "graphicCardId")
     @Mapping(source = "brandDevice.idRegister", target = "brandDeviceId")
     @Mapping(source = "typeProcessor.idRegister", target = "typeProcessorId")
     @Mapping(source = "operatingSystem.idRegister", target = "operatingSystemId")
-    DeviceDto toDto(Device entity);
+    DeviceDataDto toDto(DeviceData entity);
 
     default GraphicCard mapGraphicCard(Long id) {
         GraphicCard entity = new GraphicCard();

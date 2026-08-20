@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.Data;
 
-/** Datos transferibles de la tabla device. */
+/** Datos transferibles de la tabla device_data. */
 @Data
-public class DeviceDto {
+public class DeviceDataDto {
     /** Llave primaria del registro. */
     private Long idRegister;
 

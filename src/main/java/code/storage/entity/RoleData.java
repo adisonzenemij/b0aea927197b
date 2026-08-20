@@ -6,12 +6,12 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "role_data")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role implements RegisterEntity {
+public class RoleData implements RegisterEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_register", nullable = false)

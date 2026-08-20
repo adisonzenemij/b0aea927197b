@@ -1,10 +1,10 @@
 package code.service;
 
 import code.storage.entity.Comment;
-import code.storage.entity.User;
+import code.storage.entity.UserData;
 import code.storage.page.CommentPage;
 import code.storage.repository.CommentRepository;
-import code.storage.repository.UserRepository;
+import code.storage.repository.UserDataRepository;
 import code.web.dto.CommentDto;
 import code.web.mapper.CommentMapper;
 import java.util.List;
@@ -24,7 +24,7 @@ public class CommentService {
     private final CommentRepository repository;
     private final CommentPage page;
     private final CommentMapper mapper;
-    private final UserRepository userRepository;
+    private final UserDataRepository userRepository;
 
     /** Consulta entidades. */
     @Cacheable(value = CACHE + "-entity-all")
@@ -89,7 +89,7 @@ public class CommentService {
      */
     @Transactional
     public CommentDto dtoSaveDataForUser(CommentDto dto, String fdLogin) {
-        User user = userRepository.findFirstByFdLogin(fdLogin).orElseThrow();
+        UserData user = userRepository.findFirstByFdLogin(fdLogin).orElseThrow();
         dto.setUserId(user.getIdRegister());
         return dtoSaveData(dto);
     }

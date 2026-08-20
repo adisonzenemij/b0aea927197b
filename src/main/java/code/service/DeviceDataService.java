@@ -1,10 +1,10 @@
 package code.service;
 
-import code.storage.entity.Device;
-import code.storage.page.DevicePage;
-import code.storage.repository.DeviceRepository;
-import code.web.dto.DeviceDto;
-import code.web.mapper.DeviceMapper;
+import code.storage.entity.DeviceData;
+import code.storage.page.DeviceDataPage;
+import code.storage.repository.DeviceDataRepository;
+import code.web.dto.DeviceDataDto;
+import code.web.mapper.DeviceDataMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.*;
@@ -14,50 +14,50 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** Operaciones CRUD documentadas de la tabla device. */
+/** Operaciones CRUD documentadas de la tabla device_data. */
 @Service
 @RequiredArgsConstructor
-public class DeviceService {
-    public static final String CACHE = "device";
-    private final DeviceRepository repository;
-    private final DevicePage page;
-    private final DeviceMapper mapper;
+public class DeviceDataService {
+    public static final String CACHE = "device_data";
+    private final DeviceDataRepository repository;
+    private final DeviceDataPage page;
+    private final DeviceDataMapper mapper;
 
     /** Consulta entidades. */
     @Cacheable(value = CACHE + "-entity-all")
-    public List<Device> entSelectAll() {
+    public List<DeviceData> entSelectAll() {
         return repository.findAll();
     }
 
     /** Consulta DTO. */
     @Cacheable(value = CACHE + "-dto-all")
-    public List<DeviceDto> dtoSelectAll() {
+    public List<DeviceDataDto> dtoSelectAll() {
         return entSelectAll().stream().map(mapper::toDto).toList();
     }
 
     /** Busca entidad. */
     @Cacheable(value = CACHE + "-entity-id", key = "#idRegister")
-    public Device entSelectReg(Long idRegister) {
+    public DeviceData entSelectReg(Long idRegister) {
         return repository.findById(idRegister).orElse(null);
     }
 
     /** Busca DTO. */
     @Cacheable(value = CACHE + "-dto-id", key = "#idRegister")
-    public DeviceDto dtoSelectReg(Long idRegister) {
-        Device e = entSelectReg(idRegister);
+    public DeviceDataDto dtoSelectReg(Long idRegister) {
+        DeviceData e = entSelectReg(idRegister);
         return e == null ? null : mapper.toDto(e);
     }
 
     /** Obtiene entidades paginadas usando la clase Page propia de la tabla. */
     @Cacheable(value = CACHE + "-entity-page", key = "#sheet + '-' + #row")
-    public Page<Device> entPageAll(int sheet, int row) {
+    public Page<DeviceData> entPageAll(int sheet, int row) {
         Pageable pageable = PageRequest.of(sheet, row);
         return page.findBy(pageable);
     }
 
     /** Obtiene DTO paginados usando la clase Page propia de la tabla. */
     @Cacheable(value = CACHE + "-dto-page", key = "#sheet + '-' + #row")
-    public Page<DeviceDto> dtoPageAll(int sheet, int row) {
+    public Page<DeviceDataDto> dtoPageAll(int sheet, int row) {
         return entPageAll(sheet, row).map(mapper::toDto);
     }
 
@@ -70,22 +70,22 @@ public class DeviceService {
     @Transactional
     @CacheEvict(value = {CACHE + "-entity-all", CACHE + "-dto-all", CACHE + "-entity-id",
             CACHE + "-dto-id"}, allEntries = true)
-    public Device entSaveData(Device entity) {
+    public DeviceData entSaveData(DeviceData entity) {
         return repository.save(entity);
     }
 
     /** Guarda DTO. */
     @Transactional
-    public DeviceDto dtoSaveData(DeviceDto dto) {
+    public DeviceDataDto dtoSaveData(DeviceDataDto dto) {
         return mapper.toDto(entSaveData(mapper.toEntity(dto)));
     }
 
     /** Actualiza DTO. */
     @Transactional
-    public DeviceDto dtoUpdateReg(Long idRegister, DeviceDto dto) {
+    public DeviceDataDto dtoUpdateReg(Long idRegister, DeviceDataDto dto) {
         if (!existsById(idRegister))
             return null;
-        Device e = mapper.toEntity(dto);
+        DeviceData e = mapper.toEntity(dto);
         e.setIdRegister(idRegister);
         return mapper.toDto(entSaveData(e));
     }

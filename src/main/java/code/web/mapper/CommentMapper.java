@@ -1,8 +1,8 @@
 package code.web.mapper;
 
 import code.storage.entity.Comment;
-import code.storage.entity.Device;
-import code.storage.entity.User;
+import code.storage.entity.DeviceData;
+import code.storage.entity.UserData;
 import code.web.dto.CommentDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -21,14 +21,14 @@ public interface CommentMapper {
     @Mapping(source = "device.idRegister", target = "deviceId")
     CommentDto toDto(Comment entity);
 
-    default User mapUser(Long id) {
-        User entity = new User();
+    default UserData mapUser(Long id) {
+        UserData entity = new UserData();
         entity.setIdRegister(id);
         return id == null ? null : entity;
     }
 
-    default Device mapDevice(Long id) {
-        Device entity = new Device();
+    default DeviceData mapDevice(Long id) {
+        DeviceData entity = new DeviceData();
         entity.setIdRegister(id);
         return id == null ? null : entity;
     }

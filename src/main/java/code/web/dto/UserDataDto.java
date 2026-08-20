@@ -3,9 +3,9 @@ package code.web.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-/** Datos transferibles de la tabla user. */
+/** Datos transferibles de la tabla user_data. */
 @Data
-public class UserDto {
+public class UserDataDto {
     /** Llave primaria del registro. */
     private Long idRegister;
 
@@ -25,6 +25,6 @@ public class UserDto {
     /** Apellidos del usuario. */
     private String fdSrnm;
 
-    /** Llave foránea de role. */
+    /** Llave foránea de role_data. */
     private Long roleId;
 }

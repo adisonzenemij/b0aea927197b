@@ -7,12 +7,12 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Entity
-@Table(name = "`user`")
+@Table(name = "user_data")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements RegisterEntity {
+public class UserData implements RegisterEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_register", nullable = false)
@@ -37,5 +37,5 @@ public class User implements RegisterEntity {
     @NotNull @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_role", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Role role;
+    private RoleData role;
 }

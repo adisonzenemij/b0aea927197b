@@ -1,7 +1,7 @@
 package code.utility;
 
-import code.storage.entity.User;
-import code.storage.repository.UserRepository;
+import code.storage.entity.UserData;
+import code.storage.repository.UserDataRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +24,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
     private final JwtUtility jwtUtility;
-    private final UserRepository userRepository;
+    private final UserDataRepository userRepository;
 
     /**
      * Verifica el token, recupera el usuario vigente y crea su contexto de
@@ -49,7 +49,7 @@ public class JwtFilter extends OncePerRequestFilter {
      * Registra las autoridades derivadas del rol actual almacenado en la base de
      * datos.
      */
-    private void authenticate(User user) {
+    private void authenticate(UserData user) {
         String role = user.getRole() == null ? "" : user.getRole().getFdName();
         UserDetails principal = org.springframework.security.core.userdetails.User.withUsername(user.getFdLogin())
                 .password("")

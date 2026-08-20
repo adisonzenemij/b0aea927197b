@@ -2,9 +2,9 @@ package code.web.dto;
 
 import lombok.Data;
 
-/** Datos transferibles de la tabla role. */
+/** Datos transferibles de la tabla role_data. */
 @Data
-public class RoleDto {
+public class RoleDataDto {
     /** Llave primaria del registro. */
     private Long idRegister;
 

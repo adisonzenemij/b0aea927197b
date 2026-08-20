@@ -1,6 +1,6 @@
 package code.web.api;
 
-import code.service.RoleService;
+import code.service.RoleDataService;
 import code.web.dto.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,41 +10,41 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-/** API CRUD de la tabla role. */
+/** API CRUD de la tabla role_data. */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/roles")
 @Tag(name = "Roles")
 @SecurityRequirement(name = "bearerAuth")
-public class RoleController {
-    private final RoleService service;
+public class RoleDataController {
+    private final RoleDataService service;
 
     @GetMapping("/dto")
-    public ApiResponse<List<RoleDto>> dtoSelectAll() {
+    public ApiResponse<List<RoleDataDto>> dtoSelectAll() {
         return ApiResponse.success(service.dtoSelectAll(), "InformaciÃƒÂ³n encontrada");
     }
 
-    /** Obtiene DTO paginados a travÃ©s de la clase Page de Role. */
+    /** Obtiene DTO paginados a travÃ©s de la clase Page de RoleData. */
     @GetMapping("/dto/page")
-    public ApiResponse<Page<RoleDto>> dtoPageAll(
+    public ApiResponse<Page<RoleDataDto>> dtoPageAll(
             @RequestParam(defaultValue = "0") int sheet, @RequestParam(defaultValue = "50") int row) {
         return ApiResponse.success(service.dtoPageAll(sheet, row), "InformaciÃ³n encontrada");
     }
 
     @GetMapping("/dto/{idRegister}")
-    public ApiResponse<RoleDto> dtoSelectReg(@PathVariable Long idRegister) {
+    public ApiResponse<RoleDataDto> dtoSelectReg(@PathVariable Long idRegister) {
         return ApiResponse.success(service.dtoSelectReg(idRegister), "InformaciÃƒÂ³n encontrada");
     }
 
     @PostMapping("/dto")
-    public ResponseEntity<ApiResponse<RoleDto>> dtoInsertReg(@RequestBody RoleDto dto) {
+    public ResponseEntity<ApiResponse<RoleDataDto>> dtoInsertReg(@RequestBody RoleDataDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(service.dtoSaveData(dto), "Registro creado"));
     }
 
     @PutMapping("/dto/{idRegister}")
-    public ApiResponse<RoleDto> dtoUpdateReg(
-            @PathVariable Long idRegister, @RequestBody RoleDto dto) {
+    public ApiResponse<RoleDataDto> dtoUpdateReg(
+            @PathVariable Long idRegister, @RequestBody RoleDataDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");
     }
 

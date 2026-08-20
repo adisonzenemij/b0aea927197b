@@ -7,12 +7,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
-@Table(name = "image")
+@Table(name = "device_image")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Image implements RegisterEntity {
+public class DeviceImage implements RegisterEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_register", nullable = false)
@@ -25,5 +25,5 @@ public class Image implements RegisterEntity {
     @NotNull @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_device", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Device device;
+    private DeviceData device;
 }

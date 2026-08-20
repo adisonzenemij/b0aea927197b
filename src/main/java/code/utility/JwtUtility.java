@@ -1,6 +1,6 @@
 package code.utility;
 
-import code.storage.entity.User;
+import code.storage.entity.UserData;
 import code.web.dto.JwtTokenDto;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -33,7 +33,7 @@ public class JwtUtility {
     }
 
     /** Genera un Bearer token con el login y rol actual del usuario. */
-    public JwtTokenDto generateToken(User user) {
+    public JwtTokenDto generateToken(UserData user) {
         Instant now = Instant.now();
         Instant expiresAt = now.plusSeconds(expirationSeconds);
         String role = user.getRole() == null ? "" : user.getRole().getFdName();
