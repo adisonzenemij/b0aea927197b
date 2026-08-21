@@ -10,4 +10,7 @@ public class BrandProcessorDto {
 
     /** Nombre de la marca del procesador. */
     private String fdName;
+
+    /** Imagen de la marca codificada en Base64. */
+    private String fdImage;
 }

@@ -10,4 +10,7 @@ public class OperatingSystemDto {
 
     /** Nombre del sistema operativo. */
     private String fdName;
+
+    /** Imagen del sistema operativo codificada en Base64. */
+    private String fdImage;
 }

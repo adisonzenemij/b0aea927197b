@@ -19,4 +19,10 @@ public class BrandProcessor implements RegisterEntity {
 
     @NotBlank @Size(max = 100) @Column(name = "fd_name", nullable = false, length = 100)
     private String fdName;
+
+    /** Imagen de la marca codificada en Base64. */
+    @NotBlank
+    @Lob
+    @Column(name = "fd_image", nullable = false, columnDefinition = "LONGTEXT")
+    private String fdImage;
 }

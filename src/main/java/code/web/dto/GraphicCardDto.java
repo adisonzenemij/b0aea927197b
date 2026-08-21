@@ -10,4 +10,7 @@ public class GraphicCardDto {
 
     /** Nombre de la tarjeta gráfica. */
     private String fdName;
+
+    /** Imagen de la tarjeta gráfica codificada en Base64. */
+    private String fdImage;
 }

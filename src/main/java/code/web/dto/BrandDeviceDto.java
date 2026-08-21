@@ -10,4 +10,7 @@ public class BrandDeviceDto {
 
     /** Nombre de la marca de dispositivos. */
     private String name;
+
+    /** Imagen de la marca codificada en Base64. */
+    private String fdImage;
 }
