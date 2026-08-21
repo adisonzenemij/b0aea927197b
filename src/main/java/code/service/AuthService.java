@@ -8,6 +8,7 @@ import code.web.dto.BuyerRegistrationDto;
 import code.utility.JwtUtility;
 import code.web.dto.JwtTokenDto;
 import code.web.dto.LoginDto;
+import code.web.dto.RefreshTokenDto;
 import code.web.dto.UserDataDto;
 import code.web.mapper.UserDataMapper;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,25 @@ public class AuthService {
         if (user == null || !passwordEncoder.matches(loginDto.getFdPassd(), user.getFdPassd())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales inválidas");
         }
+        return jwtUtility.generateToken(user);
+    }
+
+    /**
+     * Genera un nuevo JWT a partir de un token actual que conserve firma y
+     * vigencia válidas.
+     */
+    @Transactional(readOnly = true)
+    public JwtTokenDto refreshToken(RefreshTokenDto refreshTokenDto) {
+        String login = jwtUtility.getLoginIfValid(refreshTokenDto.getToken());
+        if (login == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token inválido o vencido");
+        }
+
+        UserData user = userRepository.findFirstByFdLogin(login)
+                .orElseThrow(
+                        () -> new ResponseStatusException(
+                                HttpStatus.UNAUTHORIZED,
+                                "Usuario no encontrado"));
         return jwtUtility.generateToken(user);
     }
 

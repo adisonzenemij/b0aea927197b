@@ -155,4 +155,35 @@ class EngineeringTests {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    void refreshTokenRenewsAValidJwtWithoutCredentials() throws Exception {
+        RoleData buyerRole = new RoleData();
+        buyerRole.setFdName("Comprador");
+        buyerRole = roleRepository.save(buyerRole);
+
+        UserData buyer = new UserData();
+        buyer.setFdEmail("refresh@example.com");
+        buyer.setFdLogin("refresh-user");
+        buyer.setFdPassd(passwordEncoder.encode("password-segura"));
+        buyer.setFdName("Refresh");
+        buyer.setFdSrnm("User");
+        buyer.setRoleData(buyerRole);
+        buyer = userRepository.save(buyer);
+
+        String currentToken = jwtUtility.generateToken(buyer).token();
+        mockMvc.perform(
+                        post("/api/auth/refresh")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(
+                                        """
+                                        {
+                                            "token": "%s"
+                                        }
+                                        """.formatted(currentToken)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.token").exists())
+                .andExpect(jsonPath("$.data.issuedAt").exists())
+                .andExpect(jsonPath("$.data.expiresAt").exists());
+    }
+
 }
