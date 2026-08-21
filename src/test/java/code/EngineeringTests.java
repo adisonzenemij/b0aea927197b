@@ -1,7 +1,9 @@
 package code;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -11,6 +13,7 @@ import code.storage.repository.RoleDataRepository;
 import code.storage.repository.UserDataRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -79,6 +82,23 @@ class EngineeringTests {
         org.junit.jupiter.api.Assertions.assertEquals("Comprador", buyer.getRoleData().getFdName());
         org.junit.jupiter.api.Assertions.assertTrue(passwordEncoder.matches("password-segura", buyer.getFdPassd()));
         org.junit.jupiter.api.Assertions.assertTrue(buyer.getFdPassd().matches("^\\$2[aby]\\$12\\$.*"));
+    }
+
+    @Test
+    void corsAllowsBothLocalFrontendOrigins() throws Exception {
+        mockMvc.perform(
+                        options("/api/auth/register/comprador")
+                                .header(HttpHeaders.ORIGIN, "http://127.0.0.1:4200")
+                                .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST"))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://127.0.0.1:4200"));
+
+        mockMvc.perform(
+                        options("/api/auth/register/comprador")
+                                .header(HttpHeaders.ORIGIN, "http://localhost:4200")
+                                .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST"))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:4200"));
     }
 
 }
