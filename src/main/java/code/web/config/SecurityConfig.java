@@ -71,6 +71,8 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers("/api/role-data/**", "/api/user-data/**")
                                 .authenticated()
+                                .requestMatchers("/api/dash/**")
+                                .authenticated()
                                 .requestMatchers(HttpMethod.POST, "/api/**")
                                 .authenticated()
                                 .requestMatchers(HttpMethod.PUT, "/api/**")

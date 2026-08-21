@@ -52,6 +52,7 @@ class EngineeringTests {
     void jwtProtectsConfiguredControllersAndWriteOperations() throws Exception {
         mockMvc.perform(get("/api/role-data/dto")).andExpect(status().isUnauthorized());
         mockMvc.perform(get("/api/user-data/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(get("/api/dash/module")).andExpect(status().isUnauthorized());
         mockMvc.perform(get("/api/comment/dto")).andExpect(status().isOk());
         mockMvc.perform(get("/api/device-data/dto")).andExpect(status().isOk());
         mockMvc.perform(get("/api/device-image/dto")).andExpect(status().isOk());
