@@ -4,6 +4,7 @@ import code.service.UserDataService;
 import code.web.dto.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -46,6 +47,14 @@ public class UserDataController {
     public ApiResponse<UserDataDto> dtoUpdateReg(
             @PathVariable Long idRegister, @RequestBody UserDataDto dto) {
         return ApiResponse.success(service.dtoUpdateReg(idRegister, dto), "Registro actualizado");
+    }
+
+    /** Cambia la contraseña de un usuario identificado cuando ambos valores coinciden. */
+    @PutMapping(value = "/dto/{idRegister}/password", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ApiResponse<Void> changePassword(
+            @PathVariable Long idRegister, @Valid @RequestBody PasswordChangeDto passwordChangeDto) {
+        service.changePassword(idRegister, passwordChangeDto);
+        return ApiResponse.success(null, "Contraseña actualizada");
     }
 
     @DeleteMapping("/dto/{idRegister}")

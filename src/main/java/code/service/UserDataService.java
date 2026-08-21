@@ -3,8 +3,10 @@ package code.service;
 import code.storage.entity.UserData;
 import code.storage.page.UserDataPage;
 import code.storage.repository.UserDataRepository;
+import code.web.dto.PasswordChangeDto;
 import code.web.dto.UserDataDto;
 import code.web.mapper.UserDataMapper;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.*;
@@ -93,6 +95,24 @@ public class UserDataService {
         if (dto.getFdPassd() == null || dto.getFdPassd().isBlank())
             e.setFdPassd(current.getFdPassd());
         return mapper.toDto(entSaveData(e));
+    }
+
+    /**
+     * Actualiza una contraseña cuando los valores nuevo y de confirmación son
+     * idénticos. La contraseña se codifica siempre con BCrypt antes de persistir.
+     */
+    @Transactional
+    @CacheEvict(value = {CACHE + "-entity-all", CACHE + "-dto-all", CACHE + "-entity-id",
+            CACHE + "-dto-id"}, allEntries = true)
+    public void changePassword(Long idRegister, PasswordChangeDto passwordChangeDto) {
+        if (!passwordChangeDto.getFdPassdNew().equals(passwordChangeDto.getFdPassdConfirm())) {
+            throw new IllegalArgumentException("La nueva contraseña y su confirmación no coinciden");
+        }
+
+        UserData user = repository.findById(idRegister)
+                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+        user.setFdPassd(passwordEncoder.encode(passwordChangeDto.getFdPassdNew()));
+        repository.save(user);
     }
 
     /** Codifica una contraseña nueva antes de guardarla en la tabla user_data. */

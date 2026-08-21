@@ -3,6 +3,7 @@ package code;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -11,6 +12,7 @@ import code.storage.entity.RoleData;
 import code.storage.entity.UserData;
 import code.storage.repository.RoleDataRepository;
 import code.storage.repository.UserDataRepository;
+import code.utility.JwtUtility;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -37,6 +39,9 @@ class EngineeringTests {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtility jwtUtility;
 
     @Test
     void contextLoads() {
@@ -99,6 +104,55 @@ class EngineeringTests {
                                 .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:4200"));
+    }
+
+    @Test
+    void passwordChangeUpdatesOnlyWhenNewPasswordMatchesConfirmation() throws Exception {
+        RoleData administratorRole = new RoleData();
+        administratorRole.setFdName("Administrador");
+        administratorRole = roleRepository.save(administratorRole);
+
+        UserData user = new UserData();
+        user.setFdEmail("password@example.com");
+        user.setFdLogin("password-user");
+        user.setFdPassd(passwordEncoder.encode("password-anterior"));
+        user.setFdName("Password");
+        user.setFdSrnm("User");
+        user.setRoleData(administratorRole);
+        user = userRepository.save(user);
+
+        String authorization = "Bearer " + jwtUtility.generateToken(user).token();
+        mockMvc.perform(
+                        put("/api/user-data/dto/{idRegister}/password", user.getIdRegister())
+                                .header(HttpHeaders.AUTHORIZATION, authorization)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(
+                                        """
+                                        {
+                                          "fd_passd_new": "password-nueva",
+                                          "fd_passd_confirm": "password-nueva"
+                                        }
+                                        """))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isEmpty());
+
+        UserData updatedUser = userRepository.findById(user.getIdRegister()).orElseThrow();
+        org.junit.jupiter.api.Assertions.assertTrue(
+                passwordEncoder.matches("password-nueva", updatedUser.getFdPassd()));
+        org.junit.jupiter.api.Assertions.assertTrue(updatedUser.getFdPassd().matches("^\\$2[aby]\\$12\\$.*"));
+
+        mockMvc.perform(
+                        put("/api/user-data/dto/{idRegister}/password", user.getIdRegister())
+                                .header(HttpHeaders.AUTHORIZATION, authorization)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(
+                                        """
+                                        {
+                                          "fdPassdNew": "otra-password",
+                                          "fdPassdConfirm": "confirmacion-distinta"
+                                        }
+                                        """))
+                .andExpect(status().isBadRequest());
     }
 
 }
