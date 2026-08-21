@@ -14,8 +14,8 @@
   <name>b0aea927197b</name>
   <description>Device catalogue API</description>
   <properties>
-    <java.version>23</java.version>
-    <maven.compiler.release>23</maven.compiler.release>
+    <java.version>26</java.version>
+    <maven.compiler.release>26</maven.compiler.release>
     <start-class>code.Engineering</start-class>
     <exec.mainClass>code.Engineering</exec.mainClass>
     <org.mapstruct.version>1.6.3</org.mapstruct.version>
