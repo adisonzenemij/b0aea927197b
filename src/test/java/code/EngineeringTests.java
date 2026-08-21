@@ -54,11 +54,11 @@ class EngineeringTests {
         mockMvc.perform(get("/api/user-data/dto")).andExpect(status().isUnauthorized());
         mockMvc.perform(get("/api/comment/dto")).andExpect(status().isOk());
         mockMvc.perform(get("/api/device-data/dto")).andExpect(status().isOk());
-        mockMvc.perform(get("/api/device-device-image/dto")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/device-image/dto")).andExpect(status().isOk());
         mockMvc.perform(get("/api/image-ext/dto")).andExpect(status().isOk());
         mockMvc.perform(post("/api/comment/dto")).andExpect(status().isUnauthorized());
         mockMvc.perform(post("/api/device-data/dto")).andExpect(status().isUnauthorized());
-        mockMvc.perform(post("/api/device-device-image/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(post("/api/device-image/dto")).andExpect(status().isUnauthorized());
     }
 
     @Test
