@@ -19,7 +19,7 @@ public class DeviceImage implements RegisterEntity {
     private Long idRegister;
 
     @NotBlank @Lob
-    @Column(name = "fd_data", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "fd_data", nullable = false, columnDefinition = "LONGTEXT")
     private String fdData;
 
     @NotNull @ManyToOne(fetch = FetchType.LAZY, optional = false)

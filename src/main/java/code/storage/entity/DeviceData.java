@@ -51,7 +51,7 @@ public class DeviceData implements RegisterEntity {
     private BigDecimal fdScreenSize;
 
     @NotBlank @Lob
-    @Column(name = "fd_image", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "fd_image", nullable = false, columnDefinition = "LONGTEXT")
     private String fdImage;
 
     @NotNull @ManyToOne(fetch = FetchType.LAZY, optional = false)
