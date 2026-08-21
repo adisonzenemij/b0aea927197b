@@ -225,6 +225,12 @@
               <artifactId>lombok</artifactId>
             </exclude>
           </excludes>
+          <jvmArguments>
+            -Xms256m
+            -Xmx2g
+            -XX:+UseG1GC
+            -XX:MaxGCPauseMillis=200
+          </jvmArguments>
           <profiles>${profileActive}</profiles>
         </configuration>
       </plugin>
