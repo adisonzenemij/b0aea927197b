@@ -13,6 +13,9 @@ public class DeviceDataDto {
     /** Nombre del dispositivo. */
     private String fdName;
 
+    /** Código identificador del dispositivo. */
+    private String fdCode;
+
     /** Descripción; permite nulo. */
     private String fdDetail;
 

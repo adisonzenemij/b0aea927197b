@@ -22,6 +22,12 @@ public class DeviceData implements RegisterEntity {
     @NotBlank @Size(max = 255) @Column(name = "fd_name", nullable = false, length = 255)
     private String fdName;
 
+    /** Código identificador del dispositivo. */
+    @NotBlank
+    @Size(max = 50)
+    @Column(name = "fd_code", nullable = false, length = 50)
+    private String fdCode;
+
     @Lob
     @Column(name = "fd_detail", columnDefinition = "TEXT")
     private String fdDetail;
