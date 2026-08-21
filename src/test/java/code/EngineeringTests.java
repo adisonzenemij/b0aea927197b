@@ -1,5 +1,14 @@
 package code;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -13,15 +22,6 @@ import code.storage.entity.UserData;
 import code.storage.repository.RoleDataRepository;
 import code.storage.repository.UserDataRepository;
 import code.utility.JwtUtility;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -73,11 +73,11 @@ class EngineeringTests {
                                 .content(
                                         """
                                         {
-                                          "fd_email": "buyer@example.com",
-                                          "fd_login": "buyer-example",
-                                          "fd_passd": "password-segura",
-                                          "fd_name": "Buyer",
-                                          "fd_srnm": "Example"
+                                            "fd_email": "buyer@example.com",
+                                            "fd_login": "buyer-example",
+                                            "fd_passd": "password-segura",
+                                            "fd_name": "Buyer",
+                                            "fd_srnm": "Example"
                                         }
                                         """))
                 .andExpect(status().isCreated())
@@ -129,8 +129,8 @@ class EngineeringTests {
                                 .content(
                                         """
                                         {
-                                          "fd_passd_new": "password-nueva",
-                                          "fd_passd_confirm": "password-nueva"
+                                            "fd_passd_new": "password-nueva",
+                                            "fd_passd_confirm": "password-nueva"
                                         }
                                         """))
                 .andExpect(status().isOk())
@@ -148,8 +148,8 @@ class EngineeringTests {
                                 .content(
                                         """
                                         {
-                                          "fdPassdNew": "otra-password",
-                                          "fdPassdConfirm": "confirmacion-distinta"
+                                            "fdPassdNew": "otra-password",
+                                            "fdPassdConfirm": "confirmacion-distinta"
                                         }
                                         """))
                 .andExpect(status().isBadRequest());
