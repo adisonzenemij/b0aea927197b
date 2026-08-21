@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 /** API CRUD de la tabla operating_system. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/operating-systems", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/operating-system", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Sistemas Operativos")
 public class OperatingSystemController {
     private final OperatingSystemService service;

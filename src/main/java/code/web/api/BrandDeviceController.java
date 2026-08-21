@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla brand_device. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/brand-devices", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/brand-device", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Marcas Dispositivos")
 public class BrandDeviceController {
     private final BrandDeviceService service;

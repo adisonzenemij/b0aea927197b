@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla comment. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/comments", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/comment", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Comentarios")
 public class CommentController {
     private final CommentService service;

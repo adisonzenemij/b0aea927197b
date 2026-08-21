@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla type_processor. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/type-processors", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/type-processor", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Tipos Procesadores")
 public class TypeProcessorController {
     private final TypeProcessorService service;

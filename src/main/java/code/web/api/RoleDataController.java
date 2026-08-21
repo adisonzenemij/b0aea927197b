@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 /** API CRUD de la tabla role_data. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/roles", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/role-data", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Roles Datos")
 @SecurityRequirement(name = "bearerAuth")
 public class RoleDataController {

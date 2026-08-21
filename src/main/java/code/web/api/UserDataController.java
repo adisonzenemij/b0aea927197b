@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla user_data. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/user-data", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Usuarios Datos")
 @SecurityRequirement(name = "bearerAuth")
 public class UserDataController {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla brand_processor. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/brand-processors", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/brand-processor", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Marcas Procesadores")
 public class BrandProcessorController {
     private final BrandProcessorService service;

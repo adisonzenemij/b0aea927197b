@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 /** API CRUD de la tabla device_image. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/images", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/device-device-image", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Dispositivos Imagenes")
 public class DeviceImageController {
     private final DeviceImageService service;

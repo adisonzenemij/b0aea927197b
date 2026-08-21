@@ -26,13 +26,15 @@ class EngineeringTests {
     /** Verifica la protección JWT por controlador y por operación CRUD. */
     @Test
     void jwtProtectsConfiguredControllersAndWriteOperations() throws Exception {
-        mockMvc.perform(get("/api/roles/dto")).andExpect(status().isUnauthorized());
-        mockMvc.perform(get("/api/users/dto")).andExpect(status().isUnauthorized());
-        mockMvc.perform(get("/api/comments/dto")).andExpect(status().isOk());
-        mockMvc.perform(get("/api/devices/dto")).andExpect(status().isOk());
-        mockMvc.perform(get("/api/image-exts/dto")).andExpect(status().isOk());
-        mockMvc.perform(post("/api/comments/dto")).andExpect(status().isUnauthorized());
-        mockMvc.perform(post("/api/devices/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(get("/api/role-data/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(get("/api/user-data/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(get("/api/comment/dto")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/device-data/dto")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/device-device-image/dto")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/image-ext/dto")).andExpect(status().isOk());
+        mockMvc.perform(post("/api/comment/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(post("/api/device-data/dto")).andExpect(status().isUnauthorized());
+        mockMvc.perform(post("/api/device-device-image/dto")).andExpect(status().isUnauthorized());
     }
 
 }

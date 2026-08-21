@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 /** API CRUD de la tabla graphic_card. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/graphic-cards", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/graphic-card", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Tarjetas Graficas")
 public class GraphicCardController {
     private final GraphicCardService service;

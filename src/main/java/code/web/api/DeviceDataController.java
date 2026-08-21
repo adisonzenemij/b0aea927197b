@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /** API CRUD de la tabla device_data. */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/devices", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/device-data", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Dispositivos Datos")
 public class DeviceDataController {
     private final DeviceDataService service;
