@@ -44,7 +44,7 @@ public class JwtUtility {
                 .withIssuedAt(Date.from(now))
                 .withExpiresAt(Date.from(expiresAt))
                 .sign(algorithm);
-        return new JwtTokenDto(token, "Bearer", expiresAt);
+        return new JwtTokenDto(token, "Bearer", now, expiresAt);
     }
 
     /**
