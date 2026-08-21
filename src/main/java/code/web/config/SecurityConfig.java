@@ -22,7 +22,7 @@ public class SecurityConfig {
     /** Crea el codificador BCrypt usado para almacenar y validar contraseñas. */
     @Bean
     PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(12);
     }
 
     /**

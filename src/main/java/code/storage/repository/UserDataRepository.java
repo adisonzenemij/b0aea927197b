@@ -12,4 +12,7 @@ public interface UserDataRepository extends JpaRepository<UserData, Long> {
     /** Busca un usuario por su nombre de inicio de sesión. */
     @EntityGraph(attributePaths = "roleData")
     Optional<UserData> findFirstByFdLogin(String fdLogin);
+
+    /** Busca una cuenta por correo electrónico. */
+    Optional<UserData> findFirstByFdEmail(String fdEmail);
 }
