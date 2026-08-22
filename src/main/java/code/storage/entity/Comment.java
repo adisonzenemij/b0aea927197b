@@ -3,7 +3,8 @@ package code.storage.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import lombok.*;
 
 @Entity
@@ -26,10 +27,10 @@ public class Comment implements RegisterEntity {
     private Integer fdRating;
 
     @NotNull @Column(name = "fd_date", nullable = false)
-    private LocalDateTime fdDate;
+    private LocalDate fdDate;
 
     @NotNull @Column(name = "fd_hour", nullable = false)
-    private LocalDateTime fdHour;
+    private LocalTime fdHour;
 
     @NotNull @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_user", nullable = false)

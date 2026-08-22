@@ -1,7 +1,8 @@
 package code.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import lombok.Data;
 
 /** Datos transferibles de la tabla comment. */
@@ -17,10 +18,10 @@ public class CommentDto {
     private Integer fdRating;
 
     /** Fecha del comentario. */
-    private LocalDateTime fdDate;
+    private LocalDate fdDate;
 
     /** Hora del comentario. */
-    private LocalDateTime fdHour;
+    private LocalTime fdHour;
 
     /** Llave foránea de user. */
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
