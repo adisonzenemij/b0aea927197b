@@ -54,6 +54,15 @@ class EngineeringTests {
         mockMvc.perform(get("/api/user-data/dto")).andExpect(status().isUnauthorized());
         mockMvc.perform(get("/api/dash/module")).andExpect(status().isUnauthorized());
         mockMvc.perform(get("/api/comment/dto")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/comment/dto/device/999/rating"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.averageRating").exists())
+                .andExpect(jsonPath("$.data.opinionCount").value(0))
+                .andExpect(jsonPath("$.data.rating1Count").value(0))
+                .andExpect(jsonPath("$.data.rating2Count").value(0))
+                .andExpect(jsonPath("$.data.rating3Count").value(0))
+                .andExpect(jsonPath("$.data.rating4Count").value(0))
+                .andExpect(jsonPath("$.data.rating5Count").value(0));
         mockMvc.perform(get("/api/device-data/dto")).andExpect(status().isOk());
         mockMvc.perform(get("/api/device-image/dto")).andExpect(status().isOk());
         mockMvc.perform(get("/api/image-ext/dto")).andExpect(status().isOk());

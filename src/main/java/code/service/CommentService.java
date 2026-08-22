@@ -6,6 +6,7 @@ import code.storage.page.CommentPage;
 import code.storage.repository.CommentRepository;
 import code.storage.repository.UserDataRepository;
 import code.web.dto.CommentDto;
+import code.web.dto.DeviceRatingDto;
 import code.web.mapper.CommentMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -51,6 +52,13 @@ public class CommentService {
         return e == null ? null : mapper.toDto(e);
     }
 
+    /** Obtiene el promedio, total y distribución de opiniones del dispositivo. */
+    @Transactional(readOnly = true)
+    @Cacheable(value = CACHE + "-rating", key = "#deviceId")
+    public DeviceRatingDto dtoRatingByDeviceId(Long deviceId) {
+        return repository.findRatingByDeviceId(deviceId);
+    }
+
     /** Obtiene entidades paginadas usando la clase Page propia de la tabla. */
     @Cacheable(value = CACHE + "-entity-page", key = "#sheet + '-' + #row")
     public Page<Comment> entPageAll(int sheet, int row) {
@@ -72,7 +80,7 @@ public class CommentService {
     /** Guarda entidad. */
     @Transactional
     @CacheEvict(value = {CACHE + "-entity-all", CACHE + "-dto-all", CACHE + "-entity-id",
-            CACHE + "-dto-id"}, allEntries = true)
+            CACHE + "-dto-id", CACHE + "-rating"}, allEntries = true)
     public Comment entSaveData(Comment entity) {
         return repository.save(entity);
     }
@@ -109,7 +117,7 @@ public class CommentService {
     /** Elimina entidad. */
     @Transactional
     @CacheEvict(value = {CACHE + "-entity-all", CACHE + "-dto-all", CACHE + "-entity-id",
-            CACHE + "-dto-id"}, allEntries = true)
+            CACHE + "-dto-id", CACHE + "-rating"}, allEntries = true)
     public void entDeleteReg(Long idRegister) {
         if (existsById(idRegister))
             repository.deleteById(idRegister);

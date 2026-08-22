@@ -31,6 +31,12 @@ public class CommentController {
         return ApiResponse.success(service.dtoPageAll(sheet, row), "Informacion encontrada");
     }
 
+    /** Obtiene el promedio, total y distribución de opiniones de un dispositivo. */
+    @GetMapping("/dto/device/{deviceId}/rating")
+    public ApiResponse<DeviceRatingDto> dtoRatingByDeviceId(@PathVariable Long deviceId) {
+        return ApiResponse.success(service.dtoRatingByDeviceId(deviceId), "Calificación encontrada");
+    }
+
     @GetMapping("/dto/{idRegister}")
     public ApiResponse<CommentDto> dtoSelectReg(@PathVariable Long idRegister) {
         return ApiResponse.success(service.dtoSelectReg(idRegister), "Informacion encontrada");
