@@ -84,10 +84,14 @@ public class OpenApiConfig {
 
         String host = request.getHeader("X-Forwarded-Host");
         if (host != null && !host.isBlank()) {
-            return scheme + "://" + host;
+            return scheme + "://" + host + request.getContextPath();
         }
 
-        return scheme + "://" + request.getServerName() + port(request, scheme);
+        return scheme
+            + "://"
+            + request.getServerName()
+            + port(request, scheme)
+            + request.getContextPath();
     }
 
     private String port(HttpServletRequest request, String scheme) {

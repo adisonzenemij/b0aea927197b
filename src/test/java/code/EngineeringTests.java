@@ -100,7 +100,7 @@ class EngineeringTests {
     }
 
     @Test
-    void corsAllowsBothLocalFrontendOrigins() throws Exception {
+    void corsAllowsConfiguredFrontendOrigins() throws Exception {
         mockMvc.perform(
                         options("/api/auth/register/comprador")
                                 .header(HttpHeaders.ORIGIN, "http://127.0.0.1:4200")
@@ -114,6 +114,17 @@ class EngineeringTests {
                                 .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:4200"));
+
+        mockMvc.perform(
+                        options("/api/auth/register/comprador")
+                                .header(HttpHeaders.ORIGIN, "https://wf40.datacompute.org")
+                                .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST"))
+                .andExpect(status().isOk())
+                .andExpect(
+                        header()
+                                .string(
+                                        HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,
+                                        "https://wf40.datacompute.org"));
     }
 
     @Test
