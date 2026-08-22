@@ -22,6 +22,12 @@ public class DeviceImage implements RegisterEntity {
     @Column(name = "fd_data", nullable = false, columnDefinition = "LONGTEXT")
     private String fdData;
 
+    /** Posición de la imagen dentro de las imágenes del dispositivo. */
+    @NotNull
+    @Positive
+    @Column(name = "fd_order", nullable = false)
+    private Integer fdOrder;
+
     @NotNull @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_device", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

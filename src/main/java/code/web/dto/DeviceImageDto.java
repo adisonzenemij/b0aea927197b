@@ -11,6 +11,9 @@ public class DeviceImageDto {
     /** Imagen o dato codificado en texto. */
     private String fdData;
 
+    /** Posición de la imagen dentro de las imágenes del dispositivo. */
+    private Integer fdOrder;
+
     /** Llave foránea de device_data. */
     private Long deviceId;
 
