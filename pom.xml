@@ -250,6 +250,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
+        <build.profile.id>dev</build.profile.id>
         <profileActive>dev</profileActive>
         <warPackagingExcludes></warPackagingExcludes>
       </properties>
@@ -268,7 +269,11 @@
     </profile>
     <profile>
       <id>stag</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <properties>
+        <build.profile.id>stag</build.profile.id>
         <profileActive>stag</profileActive>
         <warPackagingExcludes></warPackagingExcludes>
       </properties>
@@ -287,7 +292,11 @@
     </profile>
     <profile>
       <id>prod</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <properties>
+        <build.profile.id>prod</build.profile.id>
         <profileActive>prod</profileActive>
         <warPackagingExcludes></warPackagingExcludes>
       </properties>
