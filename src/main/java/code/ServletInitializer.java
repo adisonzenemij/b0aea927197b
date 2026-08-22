@@ -7,7 +7,8 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        Engineering.loadDotenv();
-        return application.sources(Engineering.class);
+        return application
+            .sources(Engineering.class)
+            .initializers(Engineering.dotenvInitializer());
     }
 }

@@ -7,37 +7,57 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.MapPropertySource;
 
 @SpringBootApplication
 public class Engineering {
 
     private static final String ENV_FILE = ".env";
+    private static final String DOTENV_PROPERTY_SOURCE = "applicationDotenv";
 
     public static void main(String[] args) {
-        loadDotenv();
-        SpringApplication.run(Engineering.class, args);
+        SpringApplication application = new SpringApplication(Engineering.class);
+        application.addInitializers(dotenvInitializer());
+        application.run(args);
     }
 
     /**
      * Carga el archivo .env local y, al ejecutarse como WAR, el archivo incluido
-     * en WEB-INF/classes. Las variables reales del sistema y los parámetros de la
-     * JVM conservan prioridad sobre el contenido de .env.
+     * en WEB-INF/classes como propiedades propias de esta aplicación.
+     *
+     * <p>No se modifican propiedades globales de la JVM: WildFly puede alojar
+     * varios WAR y cada uno debe conservar su propia configuración.
      */
-    static void loadDotenv() {
+    static ApplicationContextInitializer<ConfigurableApplicationContext> dotenvInitializer() {
+        Map<String, Object> properties = dotenvProperties();
+
+        return context -> context
+            .getEnvironment()
+            .getPropertySources()
+            .addFirst(new MapPropertySource(DOTENV_PROPERTY_SOURCE, properties));
+    }
+
+    private static Map<String, Object> dotenvProperties() {
+        Map<String, Object> properties = new LinkedHashMap<>();
         Dotenv dotenv = Dotenv.configure()
             .ignoreIfMissing()
             .load();
 
         for (DotenvEntry entry : dotenv.entries()) {
-            setPropertyIfMissing(entry.getKey(), entry.getValue());
+            properties.put(entry.getKey(), entry.getValue());
         }
 
-        loadClasspathDotenv();
+        loadClasspathDotenv(properties);
+        return Map.copyOf(properties);
     }
 
-    private static void loadClasspathDotenv() {
+    private static void loadClasspathDotenv(Map<String, Object> properties) {
         try (InputStream input = Engineering.class
             .getClassLoader()
             .getResourceAsStream(ENV_FILE)) {
@@ -54,7 +74,7 @@ public class Engineering {
                     .filter(line -> !line.startsWith("#"))
                     .map(Engineering::dotenvEntry)
                     .filter(entry -> entry.length == 2)
-                    .forEach(entry -> setPropertyIfMissing(entry[0], entry[1]));
+                    .forEach(entry -> properties.put(entry[0], entry[1]));
             }
         } catch (IOException exception) {
             throw new IllegalStateException("No se pudo cargar el .env empaquetado", exception);
@@ -88,11 +108,5 @@ public class Engineering {
         }
 
         return value;
-    }
-
-    private static void setPropertyIfMissing(String key, String value) {
-        if (System.getenv(key) == null && System.getProperty(key) == null) {
-            System.setProperty(key, value);
-        }
     }
 }
