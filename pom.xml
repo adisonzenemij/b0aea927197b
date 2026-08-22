@@ -306,6 +306,9 @@
     </profile>
     <profile>
       <id>wildfly</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <properties>
         <warPackagingExcludes>WEB-INF/lib/logback-*.jar</warPackagingExcludes>
       </properties>
@@ -326,6 +329,7 @@
                 <resource>
                   <directory>${project.basedir}</directory>
                   <targetPath>WEB-INF/classes</targetPath>
+                  <filtering>false</filtering>
                   <includes>
                     <include>.env</include>
                   </includes>
