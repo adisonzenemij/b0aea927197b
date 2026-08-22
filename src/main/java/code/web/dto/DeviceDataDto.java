@@ -25,6 +25,9 @@ public class DeviceDataDto {
     /** Cantidad disponible. */
     private Integer fdStock;
 
+    /** Descuento aplicado al dispositivo. */
+    private Integer fdDto;
+
     /** Fecha de lanzamiento. */
     private LocalDate fdRelease;
 

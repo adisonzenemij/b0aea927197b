@@ -38,6 +38,13 @@ public class DeviceData implements RegisterEntity {
     @NotNull @PositiveOrZero @Column(name = "fd_stock", nullable = false)
     private Integer fdStock;
 
+    /** Descuento aplicado al dispositivo. */
+    @NotNull
+    @PositiveOrZero
+    @Max(999)
+    @Column(name = "fd_dto", nullable = false)
+    private Integer fdDto;
+
     @NotNull @Column(name = "fd_release", nullable = false)
     private LocalDate fdRelease;
 
