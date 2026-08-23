@@ -32,10 +32,13 @@ public class RedisConfig implements org.springframework.cache.annotation.Caching
     }
 
     @Bean
-    RedisCacheConfiguration redisCacheConfiguration(RedisSerializer<Object> redisSerializer) {
+    RedisCacheConfiguration redisCacheConfiguration(
+            RedisSerializer<Object> redisSerializer,
+            @Value("${app.redis.cache-key-prefix}") String cacheKeyPrefix) {
         return RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofMinutes(5))
                 .disableCachingNullValues()
+                .prefixCacheNameWith(cacheKeyPrefix)
                 .serializeValuesWith(
                         RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer));
     }
