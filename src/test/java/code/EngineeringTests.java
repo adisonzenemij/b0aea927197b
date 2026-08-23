@@ -117,14 +117,14 @@ class EngineeringTests {
 
         mockMvc.perform(
                         options("/api/auth/register/comprador")
-                                .header(HttpHeaders.ORIGIN, "https://wf40.datacompute.org")
+                                .header(HttpHeaders.ORIGIN, "https://a783da613a2b.datacompute.org")
                                 .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST"))
                 .andExpect(status().isOk())
                 .andExpect(
                         header()
                                 .string(
                                         HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,
-                                        "https://wf40.datacompute.org"));
+                                        "https://a783da613a2b.datacompute.org"));
     }
 
     @Test
