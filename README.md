@@ -1,4 +1,4 @@
-# Guía de instalación y ejecución
+# Guía de Instalación y Ejecución
 
 Antes de iniciar, cree el archivo `.env` a partir de `.env.dist` y sustituya los valores de ejemplo, especialmente las credenciales de base de datos y los secretos JWT. No incluya secretos reales en el control de versiones.
 
