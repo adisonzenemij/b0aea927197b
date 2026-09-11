@@ -9,6 +9,27 @@ Antes de iniciar, cree el archivo `.env` a partir de `.env.dist` y sustituya los
 | Java JDK | 26 | <https://www.oracle.com/java/technologies/downloads/#java26> |
 | Maven | 3.9.x | <https://maven.apache.org/download.cgi> |
 
+## Variables de Entorno para Java
+
+Variables de entorno para la herramienta de Java en Windows.
+
+| Nombre | Valor |
+| --- | --- |
+| `JAVA_EXE` | `C:\Program Files\Java\jdk-26.0.1\bin\java.exe` |
+| `JAVA_HOME` | `C:\Program Files\Java\jdk-26.0.1` |
+| `JDK_HOME` | `C:\Program Files\Java\jdk-26.0.1` |
+| `Path` | `%JAVA_HOME%\bin` |
+
+## Variables de Entorno para Maven
+
+Variables de entorno para la herramienta de Maven en Windows.
+
+| Nombre | Valor |
+| --- | --- |
+| `M2_HOME` | `C:\Software\Services\maven\apache-maven-3.9.10` |
+| `MAVEN_HOME` | `C:\Software\Services\maven\apache-maven-3.9.10` |
+| `Path` | `%MAVEN_HOME%\bin` |
+
 ## Variables de Entorno del Proyecto
 
 Las variables se definen en `.env`. Los prefijos identifican el ambiente: `DV_` (desarrollo/pruebas), `SG_` (staging) y `PD_` (producción). Configure únicamente las del perfil que vaya a ejecutar, sin eliminar las variables globales de APP.
