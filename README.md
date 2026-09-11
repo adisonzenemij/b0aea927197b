@@ -8,6 +8,7 @@ Antes de iniciar, cree el archivo `.env` a partir de `.env.dist` y sustituya los
 | --- | --- | --- |
 | Java JDK | 26 | <https://www.oracle.com/java/technologies/downloads/#java26> |
 | Maven | 3.9.x | <https://maven.apache.org/download.cgi> |
+| Redis Insight | Última versión | <https://redis.io/insight/> |
 
 ## Variables de Entorno para Java
 
